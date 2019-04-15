@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Century Gothic', sans-serif;
+    text-align: center;
+    background: url(../img/sea-back.jpg) 0 0 no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+#aquarium {
+    position: relative;
+    margin-top: 40px;
+    height: 100vh; 
+}
+
+.fish {
+    position: absolute;
+    transition: 3s;
+}
+
+#fish:active {
+    transition: 0.1s;
+    transform: scale(0.9);
+}
