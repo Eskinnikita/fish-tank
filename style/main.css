@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0 50px;
   font-family: "Century Gothic", sans-serif;
-  background: url(../img/sea-back.jpg) 0 0 no-repeat;
+  background: url(../img/sea-back.jpg) 0px 0 no-repeat;
   background-size: cover;
   overflow: hidden;
 }
@@ -21,15 +21,16 @@ body {
   animation: levitate 2s infinite ease-in-out;
 }
 
-.fish:active {
-  transition: 0.3s;
-  transform: scale(2)
+.fish:hover {
+  transition: 0.1s;
+  transform: scale(1.2)
 }
 
 #counter {
   position: absolute;
   right: 0;
   top: 0;
+  color: white;
 }
 
 @keyframes levitate {

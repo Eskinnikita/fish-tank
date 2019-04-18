@@ -7,9 +7,7 @@ const fishType = ["fish1", "fish2", "fish3"];
 
 window.onload = () => {
   let aquarium = document.getElementById("aquarium");
-  for (let i = 0; i < count; i++) {
-    generateFish();
-  }
+  generateFish();
   setInterval(() => {
     fishes = document.getElementsByClassName("fish");
     moveFish();
@@ -31,7 +29,7 @@ function generateFish() {
 }
 
 function moveFish() {
-  for (let i = 0; i < fishes.length; i++) {
+  for (let i = 0; i < count; i++) {
     let move = Math.random() * (4000 - 1000) + 1000;
     setTimeout(() => {
       randX = getRandom(10, document.documentElement.clientWidth - 100);
@@ -56,12 +54,7 @@ function addScoreHandle(fish) {
   fish.addEventListener("click", () => {
     scores++;
     counterDisplay.innerHTML = scores;
-    removeFish()
+    aquarium.removeChild(fish);
+    generateFish();
   });
-}
-
-function removeFish() {
-  for(let i = 0; i < fishes.length; i++) {
-    fishes.splice(i, 1);
-  }
 }
