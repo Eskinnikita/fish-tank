@@ -3,15 +3,22 @@ let randY;
 let count = 20;
 let scores = 0;
 let fishes = [];
+let time = 5;
 const fishType = ["fish1", "fish2", "fish3"];
 
 window.onload = () => {
   let aquarium = document.getElementById("aquarium");
-  generateFish();
-  setInterval(() => {
+  for (let i = 0; i < count; i++) {
+    generateFish();
+  }
+  let moveInterval = setInterval(() => {
     fishes = document.getElementsByClassName("fish");
     moveFish();
   }, 2000);
+  let timeInterval = setInterval(() => {
+    time--;
+    console.log(time);
+  }, 1000);
 };
 
 function generateFish() {
@@ -48,13 +55,15 @@ function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-console.log();
 function addScoreHandle(fish) {
   let counterDisplay = document.getElementById("counter");
   fish.addEventListener("click", () => {
     scores++;
-    counterDisplay.innerHTML = scores;
-    aquarium.removeChild(fish);
+    counterDisplay.innerHTML = "Пипец ты живодер, из-за тебя пострадало " + scores + " рыбок";
+    fish.setAttribute("src", "../img/bubbles.gif");
+    setTimeout(() => {
+      aquarium.removeChild(fish);
+    }, 400);
     generateFish();
   });
 }
