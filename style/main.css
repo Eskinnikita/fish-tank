@@ -1,11 +1,12 @@
 body {
   position: relative;
   margin: 0;
-  padding: 0 50px;
+  padding: 0 30px;
   font-family: "Century Gothic", sans-serif;
   background: url(../img/sea-back.jpg) 0px 0 no-repeat;
   background-size: cover;
   overflow: hidden;
+  color: white;
 }
 
 #aquarium {
@@ -23,14 +24,41 @@ body {
 
 .fish:hover {
   transition: 0.1s;
-  transform: scale(1.2)
+  transform: scale(1.2);
 }
 
-#counter {
+.game-info {
   position: absolute;
   right: 0;
   top: 0;
-  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  z-index: 2000;
+  border-radius: 3px;
+  border: 2px solid white;
+  padding: 10px 30px;
+  
+}
+
+h3 {
+  padding: 0;
+  margin: 0;
+}
+
+.game-info > h3 {
+  margin: 10px 0px;
+}
+
+
+.toLeft {
+  transition: 1s;
+  transform: scaleX(-1);
+}
+
+.toLeft {
+  transition: 0s;
+  transform: scaleX(1);
 }
 
 @keyframes levitate {

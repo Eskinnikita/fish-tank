@@ -3,10 +3,10 @@ let randY;
 let count = 20;
 let scores = 0;
 let fishes = [];
-let time = 5;
+let time = 4;
 const fishType = ["fish1", "fish2", "fish3"];
 
-window.onload = () => {
+document.addEventListener("DOMContentLoaded", () => {
   let aquarium = document.getElementById("aquarium");
   for (let i = 0; i < count; i++) {
     generateFish();
@@ -15,11 +15,19 @@ window.onload = () => {
     fishes = document.getElementsByClassName("fish");
     moveFish();
   }, 2000);
+  startSession();
+});
+
+function startSession() {
+  let timeDis = document.getElementById("time");
   let timeInterval = setInterval(() => {
     time--;
-    console.log(time);
+    timeDis.innerHTML = "Time left: " + time;
+    if(time <= 0) {
+      clearInterval(timeInterval)
+    }
   }, 1000);
-};
+}
 
 function generateFish() {
   let type = Math.floor(Math.random() * fishType.length);
@@ -42,7 +50,11 @@ function moveFish() {
       randX = getRandom(10, document.documentElement.clientWidth - 100);
       randY = getRandom(10, document.documentElement.clientHeight - 100);
       if (parseInt(fishes[i].style.left.replace("px", ""), 10) > randX) {
+        fishes[i].classList.remove("toRight");
+        fishes[i].classList.add("toLeft");
       } else {
+        fishes[i].classList.remove("toLeft");
+        fishes[i].classList.add("toRight");
       }
       fishes[i].style.transitionDuration = "3s";
       fishes[i].style.top = randY + "px";
@@ -59,7 +71,7 @@ function addScoreHandle(fish) {
   let counterDisplay = document.getElementById("counter");
   fish.addEventListener("click", () => {
     scores++;
-    counterDisplay.innerHTML = "Пипец ты живодер, из-за тебя пострадало " + scores + " рыбок";
+    counterDisplay.innerHTML = "Scores: " + scores;
     fish.setAttribute("src", "../img/bubbles.gif");
     setTimeout(() => {
       aquarium.removeChild(fish);
