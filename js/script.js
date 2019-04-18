@@ -34,7 +34,7 @@ function generateFish() {
   let randX = getRandom(10, document.documentElement.clientWidth - 100);
   let randY = getRandom(10, document.documentElement.clientHeight - 100);
   let fish = document.createElement("img");
-  fish.setAttribute("src", "../img/" + fishType[type] + ".png");
+  fish.setAttribute("src", "../img/" + fishType[type] + ".webp");
   fish.setAttribute("width", "80");
   fish.classList.add("fish");
   aquarium.appendChild(fish);

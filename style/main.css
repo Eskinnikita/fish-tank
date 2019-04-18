@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0 30px;
   font-family: "Century Gothic", sans-serif;
-  background: url(../img/sea-back.jpg) 0px 0 no-repeat;
+  background: url(../img/sea-back.webp) 0px 0 no-repeat;
   background-size: cover;
   overflow: hidden;
   color: white;
