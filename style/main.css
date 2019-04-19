@@ -31,7 +31,7 @@ body {
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  transition: 0.3s
+  transition: 0.3s;
 }
 
 #play-button:hover {
@@ -39,7 +39,7 @@ body {
 }
 
 #play-button:active {
-  transform: scale(0.9)
+  transform: scale(0.9);
 }
 
 #aquarium {
@@ -60,11 +60,11 @@ body {
   transform: scale(1.2);
 }
 
-.game-info {
+#gameInfo {
+  display: none;
   position: absolute;
   right: 30px;
   top: 30px;
-  display: flex;
   flex-direction: column;
   align-items: flex-end;
   z-index: 2000;
@@ -78,7 +78,7 @@ h3 {
   margin: 0;
 }
 
-.game-info > h3 {
+#game-info > h3 {
   margin: 10px 0px;
 }
 

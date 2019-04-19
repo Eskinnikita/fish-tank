@@ -20,7 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function closePreview() {
-  document.getElementById('preview').style.display = "none"
+  document.getElementById('preview').style.display = "none";
+  document.getElementById('gameInfo').style.display = "flex"
 }
 
 function startGameSession() {
@@ -61,7 +62,7 @@ function moveFish() {
       if (parseInt(fishes[i].style.left.replace("px", ""), 10) > randX) {
         fishes[i].style.transform = "scaleX(-1)"
       } else {
-        fishes[i].style.transform = "scaleX(-1)"
+        fishes[i].style.transform = "scaleX(1)"
       }
       fishes[i].style.transitionDuration = "5s"
       fishes[i].style.top = randY + "px";
