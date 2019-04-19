@@ -3,28 +3,37 @@ let randY;
 let count = 20;
 let scores = 0;
 let fishes = [];
-let time = 4;
+let time = 200;
 const fishType = ["fish1", "fish2", "fish3"];
+let moveInterval;
 
 document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("play-button").addEventListener('click', closePreview)
   let aquarium = document.getElementById("aquarium");
   for (let i = 0; i < count; i++) {
     generateFish();
   }
-  let moveInterval = setInterval(() => {
+  moveInterval = setInterval(() => {
     fishes = document.getElementsByClassName("fish");
     moveFish();
   }, 2000);
-  startSession();
 });
 
-function startSession() {
+function closePreview() {
+  document.getElementById('preview').style.display = "none"
+}
+
+function startGameSession() {
   let timeDis = document.getElementById("time");
   let timeInterval = setInterval(() => {
     time--;
     timeDis.innerHTML = "Time left: " + time;
-    if(time <= 0) {
-      clearInterval(timeInterval)
+    if (time <= 0) {
+      clearInterval(timeInterval);
+      clearInterval(moveInterval);
+      while(aquarium.firstChild) {
+        aquarium.remove(aquarium.firstChild)
+      }
     }
   }, 1000);
 }
@@ -50,13 +59,11 @@ function moveFish() {
       randX = getRandom(10, document.documentElement.clientWidth - 100);
       randY = getRandom(10, document.documentElement.clientHeight - 100);
       if (parseInt(fishes[i].style.left.replace("px", ""), 10) > randX) {
-        fishes[i].classList.remove("toRight");
-        fishes[i].classList.add("toLeft");
+        fishes[i].style.transform = "scaleX(-1)"
       } else {
-        fishes[i].classList.remove("toLeft");
-        fishes[i].classList.add("toRight");
+        fishes[i].style.transform = "scaleX(-1)"
       }
-      fishes[i].style.transitionDuration = "3s";
+      fishes[i].style.transitionDuration = "5s"
       fishes[i].style.top = randY + "px";
       fishes[i].style.left = randX + "px";
     }, move);
