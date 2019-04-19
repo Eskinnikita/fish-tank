@@ -61,11 +61,10 @@ function moveFish() {
       randX = getRandom(10, document.documentElement.clientWidth - 100);
       randY = getRandom(10, document.documentElement.clientHeight - 100);
       if (parseInt(fishes[i].style.left.replace("px", ""), 10) > randX) {
-        fishes[i].style.transform = "scaleX(-1)"
+        fishes[i].style.transform = "scaleX(-1)";
       } else {
         fishes[i].style.transform = "scaleX(1)"
       }
-      fishes[i].style.transitionDuration = "5s"
       fishes[i].style.top = randY + "px";
       fishes[i].style.left = randX + "px";
     }, move);
