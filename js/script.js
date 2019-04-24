@@ -2,26 +2,35 @@ let randX;
 let randY;
 let count = 20;
 let scores = 0;
-let fishes = [];
-let time = 200;
+let fishArr = [];
+let time = 5;
 const fishType = ["fish1", "fish2", "fish3"];
 let moveInterval;
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("play-button").addEventListener('click', closePreview)
+  start();
+});
+
+function start() {
+  document
+    .getElementById("play-button")
+    .addEventListener("click", closePreview);
   let aquarium = document.getElementById("aquarium");
   for (let i = 0; i < count; i++) {
     generateFish();
   }
   moveInterval = setInterval(() => {
-    fishes = document.getElementsByClassName("fish");
+    fishArr = document.getElementsByClassName("fish");
     moveFish();
   }, 2000);
-});
+}
 
 function closePreview() {
-  document.getElementById('preview').style.display = "none";
-  document.getElementById('gameInfo').style.display = "flex"
+  document.getElementById("preview").style.display = "none";
+  document.getElementById("gameInfo").style.display = "flex";
+  setTimeout(() => {
+    startGameSession();
+  }, 3000);
 }
 
 function startGameSession() {
@@ -32,12 +41,25 @@ function startGameSession() {
     if (time <= 0) {
       clearInterval(timeInterval);
       clearInterval(moveInterval);
-      while(aquarium.firstChild) {
-        aquarium.remove(aquarium.firstChild)
+      showResults();
+      while (aquarium.firstChild) {
+        aquarium.remove(aquarium.firstChild);
       }
     }
   }, 1000);
 }
+
+function showResults() {
+  console.log(scores);
+  document.getElementById("gameInfo").style.display = "none";
+  document.getElementById("scores").innerHTML = "You got " + scores;
+  document.getElementById("results").style.display = "block";
+  document.getElementById('restart').addEventListener('click', () => {
+    location.reload();
+  })
+}
+
+function restartSession() {}
 
 function generateFish() {
   let type = Math.floor(Math.random() * fishType.length);
@@ -60,13 +82,13 @@ function moveFish() {
     setTimeout(() => {
       randX = getRandom(10, document.documentElement.clientWidth - 100);
       randY = getRandom(10, document.documentElement.clientHeight - 100);
-      if (parseInt(fishes[i].style.left.replace("px", ""), 10) > randX) {
-        fishes[i].style.transform = "scaleX(-1)";
+      if (parseInt(fishArr[i].style.left.replace("px", ""), 10) > randX) {
+        fishArr[i].style.transform = "scaleX(-1)";
       } else {
-        fishes[i].style.transform = "scaleX(1)"
+        fishArr[i].style.transform = "scaleX(1)";
       }
-      fishes[i].style.top = randY + "px";
-      fishes[i].style.left = randX + "px";
+      fishArr[i].style.top = randY + "px";
+      fishArr[i].style.left = randX + "px";
     }, move);
   }
 }
