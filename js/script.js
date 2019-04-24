@@ -3,41 +3,39 @@ let randY;
 let count = 20;
 let scores = 0;
 let fishArr = [];
-let time = 5;
+let time = 18;
 const fishType = ["fish1", "fish2", "fish3"];
 let moveInterval;
 
 document.addEventListener("DOMContentLoaded", () => {
-  start();
+  document.getElementById("play-button").addEventListener("click", startGame);
 });
 
-function start() {
-  document
-    .getElementById("play-button")
-    .addEventListener("click", closePreview);
+function startGame() {
+  closePreview();
   let aquarium = document.getElementById("aquarium");
   for (let i = 0; i < count; i++) {
     generateFish();
   }
+  fishArr = document.getElementsByClassName("fish");
   moveInterval = setInterval(() => {
-    fishArr = document.getElementsByClassName("fish");
     moveFish();
   }, 2000);
+  startTimer();
 }
 
 function closePreview() {
   document.getElementById("preview").style.display = "none";
   document.getElementById("gameInfo").style.display = "flex";
-  setTimeout(() => {
-    startGameSession();
-  }, 3000);
 }
 
-function startGameSession() {
+function startTimer() {
   let timeDis = document.getElementById("time");
   let timeInterval = setInterval(() => {
     time--;
-    timeDis.innerHTML = "Time left: " + time;
+    if (time <= 15) {
+      timeDis.innerHTML = "Time left: " + time;
+    }
     if (time <= 0) {
       clearInterval(timeInterval);
       clearInterval(moveInterval);
@@ -52,14 +50,12 @@ function startGameSession() {
 function showResults() {
   console.log(scores);
   document.getElementById("gameInfo").style.display = "none";
-  document.getElementById("scores").innerHTML = "You got " + scores;
+  document.getElementById("scores").innerHTML = "You got " + scores + " scores";
   document.getElementById("results").style.display = "block";
-  document.getElementById('restart').addEventListener('click', () => {
+  document.getElementById("restart").addEventListener("click", () => {
     location.reload();
-  })
+  });
 }
-
-function restartSession() {}
 
 function generateFish() {
   let type = Math.floor(Math.random() * fishType.length);
